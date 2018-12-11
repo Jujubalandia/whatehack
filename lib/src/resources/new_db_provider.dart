@@ -37,12 +37,21 @@ class NewsdbProvider {
   }
 
   fetchItem(int id) async {
-   final maps = await db.query(
+    final maps = await db.query(
       "Items",
       columns: null,
       where: "id = ?",
       whereArgs: [id],
-
     );
-  } 
+
+    if (maps.length > 0) {
+      return ItemModel.fromDb(maps.first);
+    }
+
+    return null;
+  }
+
+  addItem(ItemModel item) {
+    db.insert("Items", item.toMap());
+  }
 }
