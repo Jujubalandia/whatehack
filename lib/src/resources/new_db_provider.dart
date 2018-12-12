@@ -5,10 +5,10 @@ import 'dart:io';
 import 'dart:async';
 import '../models/item_model.dart';
 
-class NewsdbProvider {
+class NewsDbProvider {
   Database db;
 
-  init() async {
+  void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, "items.db");
     db = await openDatabase(
@@ -36,7 +36,7 @@ class NewsdbProvider {
     );
   }
 
-  fetchItem(int id) async {
+  Future<ItemModel> fetchItem(int id) async {
     final maps = await db.query(
       "Items",
       columns: null,
@@ -51,7 +51,7 @@ class NewsdbProvider {
     return null;
   }
 
-  addItem(ItemModel item) {
-    db.insert("Items", item.toMap());
+  Future<int> addItem(ItemModel item) {
+    return db.insert("Items", item.toMap());
   }
 }
