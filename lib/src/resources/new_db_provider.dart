@@ -4,8 +4,9 @@ import 'package:path/path.dart';
 import 'dart:io';
 import 'dart:async';
 import '../models/item_model.dart';
+import 'repository.dart';
 
-class NewsDbProvider {
+class NewsDbProvider implements Source{
   Database db;
 
   void init() async {

@@ -23,3 +23,13 @@ class Repository {
     return item;
   }
 }
+
+
+abstract class Source {
+  Future <List<int>> fetchTopsIds();
+  Future <ItemModel> fetchItem(int id);
+}
+
+abstract class Cache {
+
+}
