@@ -61,7 +61,7 @@ class NewsDbProvider implements Source, Cache {
   }
 
   @override
-  Future<List<int>> fetchTopsIds() {
+  Future<List<int>> fetchTopIds() {
     // TODO: implement fetchTopsIds
     return null;
   }

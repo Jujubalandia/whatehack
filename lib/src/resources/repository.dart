@@ -4,9 +4,9 @@ import 'new_db_provider.dart';
 import '../models/item_model.dart';
 
 class Repository {
-  List<Source> sources = <Source>[
-    NewsApiProvider(),
+  List<Source> sources = <Source>[    
     newsDbProvider,
+    NewsApiProvider(),
   ];
 
   List<Cache> caches = <Cache>[
@@ -15,8 +15,8 @@ class Repository {
 
   // Iterate over sources when dbprovider
   // get fetchTopsIds implemented 
-  Future<List<int>> fetchTopsIds() {
-    return sources[1].fetchTopsIds();
+  Future<List<int>> fetchTopIds() {
+    return sources[1].fetchTopIds();
   }
 
   Future<ItemModel> fetchItem(int id) async {
@@ -40,7 +40,7 @@ class Repository {
 }
 
 abstract class Source {
-  Future<List<int>> fetchTopsIds();
+  Future<List<int>> fetchTopIds();
   Future<ItemModel> fetchItem(int id);
 }
 
