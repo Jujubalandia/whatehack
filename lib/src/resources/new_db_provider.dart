@@ -23,20 +23,30 @@ class NewsDbProvider implements Source, Cache {
         newDb.execute("""
           CREATE TABLE Items
            (
-              id INTEGER PRIMARY KEY,
-              type TEXT,
-              time INTEGER,
-              text TEXT,
-              parent INTEGER,
-              kids BLOB,
-              dead INTEGER,
+              id INTEGER PRIMARY KEY,  
               deleted INTEGER,
+              type INTEGER
+              time INTEGER,          
+              score INTEGER,  
+              text TEXT,      
+              dead INTEGER,      
               url TEXT,
-              score INTEGER,
               title TEXT,
-              descendents INTEGER
+              score INTEGER
+              
            )
         """);
+              // deleted INTEGER,
+              // type TEXT,
+              // by TEXT,
+              // time INTEGER,
+              // text TEXT,
+              // dead INTEGER,
+              // parent INTEGER,
+              // kids BLOB,                          
+              // url TEXT,
+              // score INTEGER,
+              //descendents INTEGER
       },
     );
   }
@@ -57,7 +67,11 @@ class NewsDbProvider implements Source, Cache {
   }
 
   Future<int> addItem(ItemModel item) {
-    return db.insert("Items", item.toMap());
+    return db.insert(
+      "Items", 
+      item.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.ignore,
+      );
   }
 
   @override
