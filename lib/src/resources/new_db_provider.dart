@@ -12,7 +12,7 @@ class NewsDbProvider implements Source, Cache {
   NewsDbProvider() {
     init();
   }
-  
+
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, "items.db");
@@ -26,27 +26,25 @@ class NewsDbProvider implements Source, Cache {
               id INTEGER PRIMARY KEY,  
               deleted INTEGER,
               type INTEGER
-              time INTEGER,          
-              score INTEGER,  
+              time INTEGER,                        
               text TEXT,      
               dead INTEGER,      
               url TEXT,
               title TEXT,
               score INTEGER
-              
            )
         """);
-              // deleted INTEGER,
-              // type TEXT,
-              // by TEXT,
-              // time INTEGER,
-              // text TEXT,
-              // dead INTEGER,
-              // parent INTEGER,
-              // kids BLOB,                          
-              // url TEXT,
-              // score INTEGER,
-              //descendents INTEGER
+        // deleted INTEGER,
+        // type TEXT,
+        // by TEXT,
+        // time INTEGER,
+        // text TEXT,
+        // dead INTEGER,
+        // parent INTEGER,
+        // kids BLOB,
+        // url TEXT,
+        // score INTEGER,
+        //descendents INTEGER
       },
     );
   }
@@ -68,10 +66,10 @@ class NewsDbProvider implements Source, Cache {
 
   Future<int> addItem(ItemModel item) {
     return db.insert(
-      "Items", 
+      "Items",
       item.toMap(),
       conflictAlgorithm: ConflictAlgorithm.ignore,
-      );
+    );
   }
 
   @override

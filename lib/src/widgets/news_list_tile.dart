@@ -19,17 +19,34 @@ class NewListTile extends StatelessWidget {
         }
 
         return FutureBuilder(
-          future: snapshot.data[itemId],
-          builder: (context, AsyncSnapshot<ItemModel> itemSnapshot) {
+            future: snapshot.data[itemId],
+            builder: (context, AsyncSnapshot<ItemModel> itemSnapshot) {
               if (!itemSnapshot.hasData) {
                 return Text('Still loading item $itemId');
               }
-              return Text(itemSnapshot.data.title);
-          }
-        );
-
-
+              return buildTile(itemSnapshot.data);
+            });
       },
+    );
+  }
+
+  Widget buildTile(ItemModel item) {
+    return Column(
+      children: <Widget>[
+        ListTile(
+          title: Text(item.title),
+          subtitle: Text('${item.score ?? 0} points'),
+          trailing: Column(
+            children: <Widget>[
+              Icon(Icons.comment),
+              Text('${item.type}'),
+            ],
+          ),
+        ),
+        Divider(
+          height: 8.0,
+        ),
+      ],
     );
   }
 }
