@@ -81,7 +81,11 @@ class NewsDbProvider implements Source, Cache {
   @override
   Future<int> clear() {
     // TODO: implement clear
+<<<<<<< HEAD
     return null;
+=======
+    return db.delete('Items');
+>>>>>>> list-scream
   }
 }
 
