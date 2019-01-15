@@ -23,15 +23,15 @@ class NewsDbProvider implements Source, Cache {
         newDb.execute("""
           CREATE TABLE Items
            (
-              id INTEGER PRIMARY KEY,  
+              id INTEGER PRIMARY KEY,
               deleted INTEGER,
               type INTEGER
-              time INTEGER,                        
-              text TEXT,      
-              dead INTEGER,      
+              time INTEGER,
+              text TEXT,
+              dead INTEGER,
               url TEXT,
-              title TEXT,
-              score INTEGER
+              score INTEGER,
+              title TEXT              
            )
         """);
         // deleted INTEGER,
@@ -78,11 +78,11 @@ class NewsDbProvider implements Source, Cache {
     return null;
   }
 
+  @override
   Future<int> clear() {
-    return db.delete("Items");
+    // TODO: implement clear
+    return db.delete('Items');
   }
-
-
 }
 
 final newsDbProvider = NewsDbProvider();

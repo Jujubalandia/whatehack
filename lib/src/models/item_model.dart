@@ -60,6 +60,9 @@ class ItemModel {
       "score": score,
       "title": title,
       //"descendants": descendants,
+
+
+   
     };
   }
 }
